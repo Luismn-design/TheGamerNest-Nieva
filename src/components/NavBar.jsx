@@ -10,11 +10,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import CartWidget from './CartWidget';
+import { useState } from 'react';
 
 const pages = ['Juegos', 'Consolas', 'Pc', 'Accesorios', 'Ofertas'];
 
-const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+const NavBar = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,7 +28,7 @@ const ResponsiveAppBar = () => {
 
 
   return (
-    <AppBar position="static" sx={{bgcolor:'#423e3e'}}>
+    <AppBar sx={{bgcolor:'#423e3e', position:'static'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SportsEsportsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -114,9 +116,12 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
+
+          <CartWidget />
+
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavBar;
