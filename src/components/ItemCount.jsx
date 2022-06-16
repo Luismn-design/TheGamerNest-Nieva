@@ -30,7 +30,7 @@ const ItemCount = ({stock}) => {
     };
 
     return (
-        <Container sx={{display:'flex', flexDirection:'row', alignContent:'center', justifyContent:'space-evenly'}}>
+        <Container sx={{display:'flex', flexDirection:'row', alignContent:'center', justifyContent:'space-evenly', mb:'2rem'}}>
             <Button variant='contained' onClick={suma}>+</Button>
             <Typography variant='h5' >{count}</Typography>
             <Button variant='contained'  onClick={resta}>-</Button>
