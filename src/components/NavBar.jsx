@@ -12,8 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import CartWidget from './CartWidget';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const pages = ['Juegos', 'Consolas', 'Pc', 'Accesorios', 'Ofertas'];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -36,7 +36,6 @@ const NavBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -47,7 +46,9 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            TheGamerNest
+            <Link to='/' style={{textDecoration:'none', color:'white'}}>
+              TheGamerNest
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -78,12 +79,10 @@ const NavBar = () => {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+            >              
+              <MenuItem key={'Juegos'} onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Juegos</Typography>
+              </MenuItem>              
             </Menu>
           </Box>
           <SportsEsportsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -91,7 +90,6 @@ const NavBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -103,22 +101,33 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            TheGamerNest
+            <Link to='/' style={{textDecoration:'none', color:'white'}}>
+              TheGamerNest
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+              <Button key={'Juegos'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link to="/juegos" style={{ textDecoration: 'none', color:'white' }}>
+                  Juegos
+                </Link>
+            </Button>
+            <Button key={'rpg'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link to="/category/rpg" style={{ textDecoration: 'none', color:'white' }}>
+                  RPG
+                </Link>
+            </Button>
+            <Button key={'accion'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link to="/category/accion" style={{ textDecoration: 'none', color:'white' }}>
+                  ACCION
+                </Link>
+            </Button>
+            <Button key={'mmo'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Link to="/category/mmo" style={{ textDecoration: 'none', color:'white' }}>
+                  MMO
+                </Link>
+            </Button>
           </Box>
-
           <CartWidget />
-
         </Toolbar>
       </Container>
     </AppBar>

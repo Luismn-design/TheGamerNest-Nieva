@@ -1,10 +1,17 @@
 import * as React from 'react';
-import { Container, Typography, CardContent} from '@mui/material';
+import {Typography, Card, CardContent, CardMedia} from '@mui/material';
+import ItemCount from './ItemCount';
 
 
 const ItemDetailContainer = ({item}) => {
     return (
-        <Container sx={{padding:'0'}}>
+        <Card sx={{ margin:'25px', display:'flex', flexDirection:'column', maxWidth:'300px', minWidth:'300px'}}>
+            <CardMedia
+                component={'img'}
+                alt={item.name}
+                image={item.image}
+                sx={{minWidth:'auto', minHeight:'auto', maxHeight:'60vh'}}
+                />
             <CardContent sx={{padding:'0'}}>
                 <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
                         {item.description}
@@ -13,8 +20,8 @@ const ItemDetailContainer = ({item}) => {
                         {item.price}
                 </Typography>
             </CardContent>
-            {/* <ItemCount stock={item.stock} /> */}
-        </Container>
+            <ItemCount stock={item.stock} />
+        </Card>
     );
 }
 

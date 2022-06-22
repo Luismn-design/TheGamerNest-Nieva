@@ -2,7 +2,7 @@ import * as React from 'react';
 import Item from './Item';
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-
+import {useParams} from 'react-router-dom';
 
 
 
@@ -10,12 +10,19 @@ import { Grid } from '@mui/material';
 
 const ItemList = ({ items }) => {
 
+    const {categoryId} = useParams();
 
     const [apiItems, setApiItems] = useState([]);
 
     const apiPromise = new Promise((resolve) => {
         setTimeout(() => {
+        if (categoryId === undefined) {
             resolve(items);
+        }else{
+            resolve(items.filter(item => {
+                return item.category.includes(categoryId);
+            }));
+        }
         }, 1500);
     });
 
@@ -32,7 +39,7 @@ const ItemList = ({ items }) => {
         getItems();
 
          // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [categoryId]);
 
 
 

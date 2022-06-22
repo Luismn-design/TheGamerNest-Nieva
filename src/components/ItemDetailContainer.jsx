@@ -2,19 +2,22 @@ import * as React from 'react';
 import {Container} from '@mui/material';
 import { useState, useEffect} from 'react';
 import ItemDetail from './ItemDetail';
-import ItemCount from './ItemCount';
+import { useParams } from 'react-router-dom';
+import items from '../data/items';
 
 
 
-const ItemDetailContainer = ({item}) => {
+const ItemDetailContainer = () => {
+
+    const {itemId} = useParams();
 
 
     const [itemDetails, setItemDetails] = useState([]);
-    const [showCount, setShowCount] = useState(false);
 
     const apiPromise = new Promise((resolve) => {
         setTimeout(() => {
-            resolve(item);
+            const itemDetail = items.find(items => items.id === parseInt(itemId));
+            resolve(itemDetail);
         }, 1500);
     });
 
@@ -22,7 +25,6 @@ const ItemDetailContainer = ({item}) => {
         try{
             const promiseResult = await apiPromise;
             setItemDetails(promiseResult);
-            setShowCount(true);
         } catch(error){
             console.log(error);
         }
@@ -32,14 +34,13 @@ const ItemDetailContainer = ({item}) => {
         getItems();
 
          // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [itemId]);
 
 
 
     return (
         <Container >
             <ItemDetail item={itemDetails}  sx={{padding:'0'}}/>
-            {showCount ? <ItemCount stock={itemDetails.stock} /> : null}
         </Container>
     );
 }
