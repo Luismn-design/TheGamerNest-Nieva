@@ -80,9 +80,26 @@ const NavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >              
-              <MenuItem key={'Juegos'} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Juegos</Typography>
-              </MenuItem>              
+              <MenuItem key={'juegos'} onClick={handleCloseNavMenu}>
+                <Link to='/juegos' style={{textDecoration:'none', color:'black'}}>
+                  <Typography textAlign="center">JUEGOS</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem key={'rpg'} onClick={handleCloseNavMenu}>
+                <Link to='/category/rpg' style={{textDecoration:'none', color:'black'}}>
+                  <Typography textAlign="center">RPG</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem key={'accion'} onClick={handleCloseNavMenu}>
+                <Link to='/category/accion' style={{textDecoration:'none', color:'black'}}>
+                  <Typography textAlign="center">ACCION</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem key={'mmo'} onClick={handleCloseNavMenu}>
+                <Link to='/category/mmo' style={{textDecoration:'none', color:'black'}}>
+                  <Typography textAlign="center">MMO</Typography>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <SportsEsportsIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -106,7 +123,7 @@ const NavBar = () => {
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button key={'Juegos'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button key={'juegos'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
                 <Link to="/juegos" style={{ textDecoration: 'none', color:'white' }}>
                   Juegos
                 </Link>
