@@ -1,10 +1,18 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import { useContext } from 'react';
+import { CartContext } from '../context/cartContext';
+import {Box, Button, Typography} from '@mui/material';
+import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Button from '@mui/material/Button';
+
+
+
 
 
 const CartWidget = () => {
+
+    const {totalQuantity} = useContext(CartContext);
+
     return (
         <Box sx={{
         display: 'flex',
@@ -18,11 +26,9 @@ const CartWidget = () => {
         borderRadius: '50%',
         width: '3rem',
         height: '3rem',
-        '&:hover': {
-            cursor: 'pointer',
-        },
         }}>
-            <Button sx={{color: 'white',}}>
+            <Typography variant="h5">{totalQuantity}</Typography>
+            <Button component={Link} to='/cart' sx={{color: 'white',}}>
                 <ShoppingCartIcon />
             </Button>
         </Box>
