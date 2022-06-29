@@ -43,6 +43,14 @@ const ItemDetailContainer = ({item}) => {
         }
     };
 
+    function handleRemoveFromCart () {
+        removeFromCart(item);
+    };
+
+    function handleClearCart () {
+        clearCart();
+    }
+
     function handleCloseDialog () {
         setOpenDialog(false);
         setCount(0);
@@ -76,6 +84,8 @@ const ItemDetailContainer = ({item}) => {
             <Container sx={{display:'flex', flexDirection:'row', alignContent:'center', justifyContent:'space-evenly'}}>
                 <AddToCartButton item={item} onAddToCart={handleAddToCart} count={count} openDialog={openDialog} handleClose={handleCloseDialog}/>
             </Container>
+            <button onClick={handleRemoveFromCart}>Borrar del carrito //test//</button>
+            <button onClick={handleClearCart}>Borrar todo del carrito //test//</button>
         </Card>
     );
 }
