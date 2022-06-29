@@ -1,20 +1,28 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 
 
 
-const ItemCount = ({resta, suma, count }) => {
+const ItemCount = ({resta, suma, count, stock, handleAddToCart}) => {
 
 
     return (
-        <Container sx={{display:'flex', flexDirection:'row', alignContent:'center', justifyContent:'space-evenly'}}>
-            <Button variant='contained' onClick={resta}>-</Button>
-            <Typography variant='h5' >{count}</Typography>
-            <Button variant='contained'  onClick={suma}>+</Button>
-        </Container>
+        <>
+            <Container sx={{display:'flex', flexDirection:'row', alignContent:'center', justifyContent:'space-evenly'}}>
+                <Button variant='contained' onClick={resta} disabled={count === 0 ? true : null}>-</Button>
+                <Typography variant='h5' >{count}</Typography>
+                <Button variant='contained'  onClick={suma} disabled={count === stock ? true : null}>+</Button>
+            </Container>
+            <Typography variant='caption' color='textSecondary' component='p' sx={{mt:'5px'}}>
+                {stock} en stock
+            </Typography>
+            <Divider />
+            <Button variant='contained' color='primary' onClick={handleAddToCart} disabled={count === 0 ? true : null}>Agregar al carrito</Button>
+        </>
     );
 };
 

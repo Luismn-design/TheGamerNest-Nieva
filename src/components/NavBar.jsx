@@ -35,7 +35,8 @@ const NavBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -46,9 +47,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link to='/' style={{textDecoration:'none', color:'white'}}>
               TheGamerNest
-            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -106,7 +105,8 @@ const NavBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -118,9 +118,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link to='/' style={{textDecoration:'none', color:'white'}}>
               TheGamerNest
-            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button key={'juegos'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>

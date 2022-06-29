@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide} from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, Container} from '@mui/material';
 import {Link} from 'react-router-dom';
 
 
@@ -13,7 +13,7 @@ const AddToCartButton = ({item, onAddToCart, count, openDialog, handleClose}) =>
 
 
     return (
-        <div>
+        <Container sx={{justifySelf:'center'}}>
             <Button variant="contained" color="primary" onClick={onAddToCart} sx={{margin:'10px'}}>
                 Agregar al carrito
             </Button>
@@ -40,7 +40,7 @@ const AddToCartButton = ({item, onAddToCart, count, openDialog, handleClose}) =>
                         </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </Container>
     );
 };
 
