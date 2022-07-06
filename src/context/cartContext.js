@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 export const CartContext = React.createContext([]);
@@ -9,15 +9,6 @@ export const CartProvider = ({children}) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
 
-    useEffect(() => {
-        console.log(cart)
-    }
-    , [cart])
-
-    useEffect(() => {
-        console.log('El precio total es: $' + totalPrice);
-    }
-    , [totalPrice]);
 
     const addToCart = (item, count) => {
         if(isInCart(item)){

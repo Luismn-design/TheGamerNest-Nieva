@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {Container} from '@mui/material';
 import { useState, useEffect} from 'react';
-import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom';
-import items from '../data/items';
+import { getFirestore, collection, getDocs, query, where, limit, documentId } from 'firebase/firestore';
+import {Container} from '@mui/material';
+import ItemDetail from './ItemDetail';
+
 
 
 
@@ -11,36 +12,28 @@ const ItemDetailContainer = () => {
 
     const {itemId} = useParams();
 
-
     const [itemDetails, setItemDetails] = useState([]);
 
-    const apiPromise = new Promise((resolve) => {
-        setTimeout(() => {
-            const itemDetail = items.find(items => items.id === parseInt(itemId));
-            resolve(itemDetail);
-        }, 1500);
-    });
-
-    const getItems = async () => {
-        try{
-            const promiseResult = await apiPromise;
-            setItemDetails(promiseResult);
-        } catch(error){
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
-        getItems();
+        const db = getFirestore();
 
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemId]);
+        const itemCollection = query(collection(db, 'juegos'),
+            where(documentId() , '==', itemId),
+            limit(1)
+        );
 
+        getDocs(itemCollection).then((snapshot) => {
+            setItemDetails(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+        })
+    } , [itemId]);
 
 
     return (
         <Container >
-            <ItemDetail item={itemDetails}  sx={{padding:'0'}}/>
+            {itemDetails.map((item) => (
+                <ItemDetail key={item.id} item={item} />
+            ))}
         </Container>
     );
 }

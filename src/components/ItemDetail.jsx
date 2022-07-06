@@ -5,17 +5,28 @@ import {Link} from 'react-router-dom';
 import ItemCount from './ItemCount';
 // import AddToCartButton from './AddToCartButton';
 import { CartContext } from '../context/cartContext';
+import { useEffect } from 'react';
 
 
 
 const ItemDetailContainer = ({item}) => {
 
     //context
-    const {addToCart, removeFromCart, clearCart} = useContext(CartContext);
+    const {addToCart, isInCart, cart} = useContext(CartContext);
 
     const [count, setCount] = useState(0);
 
     const [isAdded, setIsAdded] = useState(false);
+
+    useEffect (() => {
+        if (isInCart(item)){
+            setIsAdded(true);
+        } else {
+            setIsAdded(false);
+        }
+        // eslint-disable-next-line
+    }, [cart]
+    );  
 
     function handleRemove () {
         if (count > 0){
@@ -45,13 +56,6 @@ const ItemDetailContainer = ({item}) => {
         }
     };
 
-    function handleRemoveFromCart () {
-        removeFromCart(item);
-    };
-
-    function handleClearCart () {
-        clearCart();
-    }
 
     return (
         <Card sx={{ margin:'25px', display:'flex', flexDirection:'column', maxWidth:'300px', minWidth:'300px'}}>
@@ -81,8 +85,6 @@ const ItemDetailContainer = ({item}) => {
             :
                 <Button component={Link} to='/cart' variant='contained'> Ver carrito </Button>}                
             </Container>
-            <button onClick={handleRemoveFromCart}>Borrar del carrito //test//</button>
-            <button onClick={handleClearCart}>Borrar todo del carrito //test//</button>
         </Card>
     );
 }

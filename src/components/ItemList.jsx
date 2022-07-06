@@ -1,52 +1,52 @@
 import * as React from 'react';
-import Item from './Item';
 import { useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
 import {useParams} from 'react-router-dom';
+import { Grid } from '@mui/material';
+import Item from './Item';
 
 
 
 
 
-const ItemList = ({ items }) => {
+const ItemList = () => {
 
     const {categoryId} = useParams();
 
-    const [apiItems, setApiItems] = useState([]);
-
-    const apiPromise = new Promise((resolve) => {
-        setTimeout(() => {
-        if (categoryId === undefined) {
-            resolve(items);
-        }else{
-            resolve(items.filter(item => {
-                return item.category.includes(categoryId);
-            }));
-        }
-        }, 1500);
-    });
-
-    const getItems = async () => {
-        try{
-            const promiseResult = await apiPromise;
-            setApiItems(promiseResult);
-        } catch(error){
-            console.log(error);
-        }
-    }
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
-        getItems();
+        const db = getFirestore();
 
-         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [categoryId]);
+        if (categoryId){
+            const categoryCollection = query(collection(db, 'juegos'),
+                where('category', 'array-contains', categoryId)
+            );
+
+            getDocs(categoryCollection).then((snapshot) => {
+                if (snapshot.size > 0){
+                    setItems(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+                } else {
+                    console.log('err')
+                }
+            });
+
+        } else {
+            const itemCollection = collection(db, 'juegos');
+
+            getDocs(itemCollection).then((snapshot) => {
+                setItems(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+            }
+            );
+        }
+    } , [categoryId]);
 
 
 
 
     return (
         <Grid container sx={{display: 'flex', mt:'auto', justifyContent:'center'}}>
-            {apiItems.map((item) => (
+            {items.map((item) => (
                 <Item key={item.id} {...item} />            
             ))}
         </Grid>
