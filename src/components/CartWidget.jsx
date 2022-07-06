@@ -19,7 +19,6 @@ const CartWidget = () => {
         alignItems: 'center',
         justifyContent: 'center',
         p: 2,
-        bgcolor: '#423e3e',
         color: 'white',
         fontSize: 1,
         fontWeight: 700,

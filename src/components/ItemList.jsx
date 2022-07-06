@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
 import {useParams} from 'react-router-dom';
-import { Grid } from '@mui/material';
+import { Grid, Backdrop, CircularProgress} from '@mui/material';
 import Item from './Item';
 
 
@@ -14,6 +14,8 @@ const ItemList = () => {
     const {categoryId} = useParams();
 
     const [items, setItems] = useState([]);
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const db = getFirestore();
@@ -41,6 +43,14 @@ const ItemList = () => {
         }
     } , [categoryId]);
 
+    useEffect(() => {
+        if (items.length > 0){
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
+    } , [items]);
+
 
 
 
@@ -49,6 +59,9 @@ const ItemList = () => {
             {items.map((item) => (
                 <Item key={item.id} {...item} />            
             ))}
+            {loading && <Backdrop open={loading}>
+                <CircularProgress color='inherit' />
+            </Backdrop>}
         </Grid>
     );
 };

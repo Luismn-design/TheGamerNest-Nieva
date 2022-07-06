@@ -28,7 +28,7 @@ const NavBar = () => {
 
 
   return (
-    <AppBar sx={{bgcolor:'#423e3e', position:'static'}}>
+    <AppBar color='primary' sx={{ position:'static'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SportsEsportsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -121,25 +121,17 @@ const NavBar = () => {
               TheGamerNest
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button key={'juegos'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link to="/juegos" style={{ textDecoration: 'none', color:'white' }}>
-                  Juegos
-                </Link>
+              <Button key={'juegos'} onClick={handleCloseNavMenu} component={Link} to="/juegos"  sx={{ my: 2, color: 'white', textDecoration:'none' }}>
+                Juegos
             </Button>
-            <Button key={'rpg'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link to="/category/rpg" style={{ textDecoration: 'none', color:'white' }}>
-                  RPG
-                </Link>
+            <Button key={'rpg'} onClick={handleCloseNavMenu} component={Link} to="/category/rpg"  sx={{ my: 2, color: 'white', textDecoration:'none'  }}>
+                RPG
             </Button>
-            <Button key={'accion'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link to="/category/accion" style={{ textDecoration: 'none', color:'white' }}>
-                  ACCION
-                </Link>
+            <Button key={'accion'} onClick={handleCloseNavMenu} component={Link} to="/category/accion" sx={{ my: 2, color: 'white', textDecoration:'none' }}>
+                ACCION
             </Button>
-            <Button key={'mmo'} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
-                <Link to="/category/mmo" style={{ textDecoration: 'none', color:'white' }}>
-                  MMO
-                </Link>
+            <Button key={'mmo'} onClick={handleCloseNavMenu} component={Link} to="/category/mmo" sx={{ my: 2, color: 'white', textDecoration:'none' }}>
+                MMO
             </Button>
           </Box>
           <CartWidget />

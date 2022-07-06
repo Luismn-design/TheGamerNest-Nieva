@@ -3,7 +3,6 @@ import { useState, useContext } from 'react';
 import {Typography, Card, CardContent, CardMedia, Container, Button} from '@mui/material';
 import {Link} from 'react-router-dom';
 import ItemCount from './ItemCount';
-// import AddToCartButton from './AddToCartButton';
 import { CartContext } from '../context/cartContext';
 import { useEffect } from 'react';
 
@@ -58,7 +57,7 @@ const ItemDetailContainer = ({item}) => {
 
 
     return (
-        <Card sx={{ margin:'25px', display:'flex', flexDirection:'column', maxWidth:'300px', minWidth:'300px'}}>
+        <Card sx={{ display:'flex', flexDirection:'column', maxWidth:'300px', minWidth:'300px'}}>
             <CardMedia
                 component={'img'}
                 alt={item.name}
@@ -83,7 +82,7 @@ const ItemDetailContainer = ({item}) => {
                         handleAddToCart={handleAddToCart}
                     />
             :
-                <Button component={Link} to='/cart' variant='contained'> Ver carrito </Button>}                
+                <Button component={Link} to='/cart' variant='contained' style={{marginBottom:'1.5rem'}}> Ver carrito </Button>}                
             </Container>
         </Card>
     );

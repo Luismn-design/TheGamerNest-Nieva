@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 
 export const CartContext = React.createContext([]);
 
@@ -8,6 +7,14 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
+
+    const [buyOrder, setBuyOrder] = useState([]);
+
+
+    useEffect(() => {
+        setBuyOrder({buyer:{name:'phone', phone:'phone', email:'email'}, buyProducts:cart, totalPrice, date: new Date()});
+    }, [cart, totalPrice]);
+
 
 
     const addToCart = (item, count) => {
@@ -39,7 +46,7 @@ export const CartProvider = ({children}) => {
 
 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart, isInCart, totalQuantity, totalPrice}}>
+        <CartContext.Provider value={{cart, addToCart, removeFromCart, clearCart, isInCart, totalQuantity, totalPrice, buyOrder}}>
             {children}
         </CartContext.Provider>
     );

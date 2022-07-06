@@ -4,24 +4,36 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from "./components/Cart";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { CartProvider } from "./context/cartContext";
-// import Test from "./components/Test";
+import { ThemeProvider } from "@mui/system";
+import theme from "../src/themes/theme";
+import Footer from "./components/Footer";
 
 function App() {
 
 
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<ItemListContainer />} />
-          <Route exact path="/juegos" element={<ItemListContainer />} />
-          <Route exact path="/juegos/:itemId" element={<ItemDetailContainer />} />
-          <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
-          <Route exact path="/cart" element={<Cart />} />
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
+    <ThemeProvider theme={theme}>
+      <CartProvider>
+        <div className="App" style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}>
+            <div style={{
+              backgroundColor: '#0D1321',
+              minHeight: '90vh'
+              }}>
+              <BrowserRouter>
+                <NavBar />
+                <Routes>
+                  <Route exact path="/" element={<ItemListContainer />} />
+                  <Route exact path="/juegos" element={<ItemListContainer />} />
+                  <Route exact path="/juegos/:itemId" element={<ItemDetailContainer />} />
+                  <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
+                  <Route exact path="/cart" element={<Cart />} />
+                </Routes>
+              </BrowserRouter>
+            </div>
+          <Footer />
+        </div>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

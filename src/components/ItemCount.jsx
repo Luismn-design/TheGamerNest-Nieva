@@ -20,7 +20,7 @@ const ItemCount = ({resta, suma, count, stock, handleAddToCart}) => {
                 {stock} en stock
             </Typography>
             <Divider />
-            <Button variant='contained' color='primary' onClick={handleAddToCart} disabled={count === 0 ? true : null}>Agregar al carrito</Button>
+            <Button variant='contained' color='primary' onClick={handleAddToCart} disabled={count === 0 ? true : null} style={{marginBottom:'1.5rem'}}>Agregar al carrito</Button>
         </>
     );
 };
