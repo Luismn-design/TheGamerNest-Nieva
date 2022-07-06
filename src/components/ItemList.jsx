@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import {useParams} from 'react-router-dom';
 import { Grid, Backdrop, CircularProgress} from '@mui/material';
 import Item from './Item';
+import { db } from '../firebase';
 
 
 
@@ -18,7 +19,6 @@ const ItemList = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const db = getFirestore();
 
         if (categoryId){
             const categoryCollection = query(collection(db, 'juegos'),

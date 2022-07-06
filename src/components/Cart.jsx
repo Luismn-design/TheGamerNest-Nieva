@@ -4,8 +4,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Container, Button, Typography, CardMedia, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Backdrop, CircularProgress } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
-import {addDoc, collection, getFirestore} from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
 import OrderDialog from './OrderDialog';
+import { db } from '../firebase';
 
 
 const Cart = () => {
@@ -31,7 +32,6 @@ const Cart = () => {
 
         setOpen(true);
 
-        const db = getFirestore();
         
         const ordersCollection = collection(db, 'orders');
 

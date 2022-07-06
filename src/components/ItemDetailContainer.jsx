@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { getFirestore, collection, getDocs, query, where, limit, documentId } from 'firebase/firestore';
+import { collection, getDocs, query, where, limit, documentId } from 'firebase/firestore';
 import {Container, Backdrop, CircularProgress} from '@mui/material';
 import ItemDetail from './ItemDetail';
+import { db } from '../firebase';
 
 
 
@@ -18,7 +19,6 @@ const ItemDetailContainer = () => {
 
 
     useEffect(() => {
-        const db = getFirestore();
 
         const itemCollection = query(collection(db, 'juegos'),
             where(documentId() , '==', itemId),
