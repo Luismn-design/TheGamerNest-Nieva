@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from './App';
 import './css/index.css';
 
-
+//to do: remove data from cart buy order
 
 
 const rootElement = document.getElementById('root');

@@ -14,12 +14,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CartProvider>
-        <div className="App" style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}>
+        <BrowserRouter>
+          <div className="App" style={{display:'flex', flexDirection:'column', minHeight:'100vh'}}>
             <div style={{
               backgroundColor: '#0D1321',
               minHeight: '90vh'
               }}>
-              <BrowserRouter>
                 <NavBar />
                 <Routes>
                   <Route exact path="/" element={<ItemListContainer />} />
@@ -28,10 +28,10 @@ function App() {
                   <Route exact path="/category/:categoryId" element={<ItemListContainer />} />
                   <Route exact path="/cart" element={<Cart />} />
                 </Routes>
-              </BrowserRouter>
-            </div>
-          <Footer />
-        </div>
+              </div>
+            <Footer />
+          </div>
+        </BrowserRouter>
       </CartProvider>
     </ThemeProvider>
   );

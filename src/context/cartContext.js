@@ -12,7 +12,13 @@ export const CartProvider = ({children}) => {
 
 
     useEffect(() => {
-        setBuyOrder({buyer:{name:'phone', phone:'phone', email:'email'}, buyProducts:cart, totalPrice, date: new Date()});
+        setBuyOrder({buyer:{name:'phone', phone:'phone', email:'email'}, buyProducts:cart.map(item => {
+            return {
+                id: item.id,
+                name: item.name,
+                price: item.price
+            }
+        }), totalPrice, date: new Date()});
     }, [cart, totalPrice]);
 
 

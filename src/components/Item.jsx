@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Divider, Typography, CardMedia, CardContent, Card} from '@mui/material';
+import { Typography, CardMedia, CardContent, Card} from '@mui/material';
 import {Link} from 'react-router-dom'
 
 
@@ -15,12 +15,11 @@ const Item = (item) => {
                     sx={{minWidth:'300px', minHeight:'350px', maxHeight:'350px'}}
                     />
             </Link>
-            <CardContent sx={{maxHeight:'2rem'}}>
-                <Typography gutterBottom variant="h6" component="h2">
+            <CardContent sx={{maxHeight:'2rem', backgroundColor:'#E0DDCF'}}>
+                <Typography gutterBottom variant="h6" style={{color:'#1D2D44', fontWeight:'bold'}}>
                     {item.name}
                 </Typography>
             </CardContent>
-            <Divider sx={{mb:'auto'}} />
 
         </Card>
     );
