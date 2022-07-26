@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import {useParams} from 'react-router-dom';
-import { Grid, Backdrop, CircularProgress} from '@mui/material';
+import { Grid, Backdrop, CircularProgress, Typography} from '@mui/material';
 import Item from './Item';
 import { db } from '../firebase';
+import theme from '../themes/theme';
 
 
 
@@ -55,14 +56,20 @@ const ItemList = () => {
 
 
     return (
-        <Grid container sx={{display: 'flex', mt:'auto', justifyContent:'center'}}>
-            {items.map((item) => (
-                <Item key={item.id} {...item} />            
-            ))}
-            {loading && <Backdrop open={loading}>
-                <CircularProgress color='inherit' />
-            </Backdrop>}
-        </Grid>
+        <>
+            <Typography variant="h6" gutterBottom style={theme.ItemListCategoryTitle}>
+                {categoryId ? categoryId.toLocaleUpperCase() : 'Todos los juegos'}
+            </Typography>
+
+            <Grid container sx={theme.ItemListContainer}>
+                {items.map((item) => (
+                    <Item key={item.id} {...item} />            
+                ))}
+                {loading && <Backdrop open={loading}>
+                    <CircularProgress color='inherit' />
+                </Backdrop>}
+            </Grid>
+        </>
     );
 };
 

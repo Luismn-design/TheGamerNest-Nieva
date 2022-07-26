@@ -5,6 +5,7 @@ import { collection, getDocs, query, where, limit, documentId } from 'firebase/f
 import {Container, Backdrop, CircularProgress} from '@mui/material';
 import ItemDetail from './ItemDetail';
 import { db } from '../firebase';
+import theme from '../themes/theme';
 
 
 
@@ -40,7 +41,7 @@ const ItemDetailContainer = () => {
 
 
     return (
-        <Container style={{display:'flex', justifyContent:'center', marginTop:'20px', marginBottom:'20px'}}>
+        <Container style={theme.ItemDetailsContainer}>
             {itemDetails.map((item) => (
                 <ItemDetail key={item.id} item={item} />
             ))}
