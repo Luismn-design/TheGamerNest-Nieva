@@ -4,18 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import { Container, Button, Typography, CardMedia, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Backdrop, CircularProgress } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
-import { addDoc, collection } from 'firebase/firestore'
-import OrderDialog from './OrderDialog';
-import { db } from '../firebase';
+import FormOrder from './FormOrder';
 
 
 const Cart = () => {
 
-    const {cart,removeFromCart, clearCart, totalPrice, buyOrder} = useContext(CartContext);
+    const {cart, removeFromCart, clearCart, totalPrice} = useContext(CartContext);
 
     const [somethingInCart, setSomethingInCart] = useState(false);
-
-    const [orderId, setOrderId] = useState();
 
     const [open, setOpen] = useState(false);
 
@@ -28,21 +24,11 @@ const Cart = () => {
     }
     , [cart]);
 
-    const sendOrder = async () => {
 
+
+    const handleOpenForm = () => {
         setOpen(true);
-
-        
-        const ordersCollection = collection(db, 'orders');
-
-        addDoc(ordersCollection, buyOrder).then(({id}) => {
-            setOrderId(id);
-            clearCart();
-            setOpen(false);
-        })
-    
     };
-
 
     return(
         <Container style={{backgroundColor:'#E6E8E6', minHeight:'90vh', borderRadius:'0.5rem'}}>
@@ -92,7 +78,7 @@ const Cart = () => {
                             <Typography variant="h6">Total: $ {totalPrice}</Typography>
                         </Container>
                         <Container  sx={{display:'flex', justifyContent:'flex-end', marginTop:'1rem'}}>
-                            <Button variant='contained' color='secondary' onClick={sendOrder} style={{width:'25%'}}>Comprar</Button>
+                            <Button variant='contained' color='secondary' onClick={handleOpenForm} style={{width:'25%'}}>Comprar</Button>
                         </Container>
                         <Container sx={{display:'flex', justifyContent:'flex-end', marginTop:'1rem'}}>
                             <Button variant='contained' onClick={clearCart} style={{backgroundColor:'grey'}}>Vaciar carrito</Button>
@@ -102,16 +88,12 @@ const Cart = () => {
                 :
                 <Container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                     <Typography variant="h6">No hay nada en el carrito</Typography>
-                    {orderId === true 
-                        ? <Typography variant="h6">Su pedido se ha realizado con exito, su numero de pedido es: {orderId}</Typography>
-                        : null
-                    }
                     <Button component={Link} to="/" color='secondary'>
                         <Typography variant="h6">Volver a la tienda</Typography>
                     </Button>
                 </Container>
             }
-                <OrderDialog open={orderId !== undefined} orderId={orderId} />
+                <FormOrder open={open} />
 
                 <Backdrop open={open} >
                     <CircularProgress color="inherit" />

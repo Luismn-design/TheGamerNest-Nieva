@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Proyecto Final - Luis Nieva
+####*Coderhouse* | Curso ReactJS  - Comisión 31195
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+## Deploy
+https://thegamernest.netlify.app
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Sobre el e-commerce
 
-### `npm start`
+**The Gamer Nest**
+Es un e-commerce de videojuegos que se encuentra en desarrollo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**¿Por qué elegí está empresa para inspirarme para hacer la app?**
+Tengo experiencia en el mundo de los videojueos y una pasion por los mismos.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tecnologías
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Esta aplicación fue construida usando las siguientes tecnologias:
 
-### `npm run build`
+* [HTML5](https://developer.mozilla.org/es/docs/Web/HTML/)
+* [JavaScript](https://developer.mozilla.org/es/docs/Web/CSS/)
+* [React](https://reactjs.org/) \
+Libreria para `JavaScript` que nos ayuda a construir interfaces reactivas.
+* [Firebase](https://firebase.google.com/) \
+Plataforma de desarrollo de Google, que nos sirve de backend para usar los servicios de base de datos llamado `firestore`.
+* [Material UI](https://mui.com/) \
+Libreria de componentes `React` de código abierto que implementa Material Design de Google.
+* [Material Icons](https://mui.com/material-ui/icons/) \
+Grupo de +2000 íconos creados por Google en su sistema `Material`, divididos en cinco secciones: "relleno", "borde", "redondeado", "duotono", "sharp".
+* [NPM](https://www.npmjs.com/) \
+Sistema de gestión de paquetes por defecto para Node.js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :electric_plug: Funciones dentro de `CartContext`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **addToCart:** Añadir un item/producto al carrito.
+* **isInCart:** Verificar si un producto ya se encuentra en el carrito.
+* **totalPrice:** Suma la totalidad de los precios de los productos añadidos al carrito.
+* **removeFromCart:** Eliminar un producto del carrito.
+* **clearCart:** Vaciar el carrito.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## :fire: `Firebase`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Colección: Productos
+Cada `producto` tiene las siguientes características:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Campo             | Tipo            |        Valor         |
+| ----------------- | ----------------|----------------------|
+| category | array | Categoría |
+| description | string | Descripción |
+| image | string | Imagen |
+| name | string | Nombre |
+| price | number | Precio |
+| stock | number | Stock |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Colección: Orders
+Cada `order` tiene las siguientes características:
 
-## Learn More
+| Buyer           | Tipo            |        Valor         |
+| ----------------- | ----------------|----------------------|
+| Email | string | Correo electrónico|
+| Nombre | string | Nombre|
+| Telefono | number | Teléfono |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| BuyProducts            | Tipo            |        Valor         |
+| ----------------- | ----------------|----------------------|
+| id | string | ID Del Producto |
+| name | string | Nombre |
+| price | number | Precio |
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| date | timestamp | Fecha y hora |
+| totalPrice | number | Precio Total |
+---

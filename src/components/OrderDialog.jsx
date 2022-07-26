@@ -3,7 +3,7 @@ import { Dialog, Button, Typography, Container} from '@mui/material';
 import {Link} from 'react-router-dom';
 
 
-const OrderDialog = ({open, orderId}) => {
+const OrderDialog = ({orderId}) => {
     return (
         <Dialog open={orderId !== undefined}>
             <Container>
