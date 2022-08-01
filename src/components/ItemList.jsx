@@ -58,7 +58,7 @@ const ItemList = () => {
     return (
         <>
             <Typography variant="h6" gutterBottom style={theme.ItemListCategoryTitle}>
-                {categoryId ? categoryId.toLocaleUpperCase() : 'Todos los juegos'}
+                {categoryId ? categoryId.toLocaleUpperCase() : 'Todos los Juegos'}
             </Typography>
 
             <Grid container sx={theme.ItemListContainer}>
